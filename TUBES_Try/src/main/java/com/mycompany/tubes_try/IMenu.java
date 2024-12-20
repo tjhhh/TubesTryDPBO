@@ -16,7 +16,7 @@ public class IMenu implements Menu{
     private Scanner scanner = new Scanner(System.in);
     private int idPengguna = 10001;
     
-    
+    System.out.println("Ojan");
     public void tampilkanSemuaLowongan() {
         if (semuaLowongan.isEmpty()) {
             System.out.println("Tidak ada lowongan yang tersedia.");
