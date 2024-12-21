@@ -11,6 +11,7 @@ package com.mycompany.tubes_try;
  */
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.InputMismatchException;
 
 public class TestApplication {
     public static void main(String[] args) {
@@ -22,9 +23,9 @@ public class TestApplication {
         while (true) {
             menu.menuUtama();
             System.out.print("Masukkan pilihan: ");
+            try{
             int pilihan = scanner.nextInt();
             scanner.nextLine(); // Membersihkan buffer
-
             switch (pilihan) {
                 case 1:
                     menu.Login();
@@ -41,9 +42,14 @@ public class TestApplication {
                 default:
                     System.out.println("Pilihan tidak valid. Silakan coba lagi.");
             }
-        }            
+            }catch(InputMismatchException e){
+                System.out.println("Format inputan tidak valid, silahkan coba lagi !");
+                scanner.nextLine();
+            }
+        }   
+                
         
-    }
+    } 
     
 }
 

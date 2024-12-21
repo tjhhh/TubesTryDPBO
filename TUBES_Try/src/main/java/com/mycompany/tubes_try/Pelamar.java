@@ -301,9 +301,14 @@ public class Pelamar extends Pengguna {
         System.out.println("Lamaran dengan ID " + idLamaran + " tidak ditemukan.");
     }
     
+    @Override
+    public void showInfoPengguna(){
+        System.out.println("======Informasi Pelamar======");
+        System.out.println("Username\t:" + getUsername());
+        System.out.println("\t:" + getUsername());
+    }
      
-     
-    public void showNotificaion(){
+    public void showNotification(){
         
     }
     public void showRecommendation(){
