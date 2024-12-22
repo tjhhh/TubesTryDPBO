@@ -15,6 +15,7 @@ public class Lamaran {
     private int idDokumen;
     private String tanggalLamaran; // Tanggal lamaran diajukan
     private String statusLamaran; // Status lamaran (contoh: "Diterima", "Ditolak", "Dalam Proses")
+    private Pelamar pelamar;
 
     // Konstruktor
     public Lamaran(int idLamaran, int idLowongan, int idPelamar,int idDokumen, String tanggalLamaran, String statusLamaran) {
@@ -72,6 +73,9 @@ public class Lamaran {
 
     public void setStatusLamaran(String statusLamaran) {
         this.statusLamaran = statusLamaran;
+    }
+    public Pelamar getPelamar(){
+        return pelamar;
     }
 
     // Method untuk menampilkan detail lamaran

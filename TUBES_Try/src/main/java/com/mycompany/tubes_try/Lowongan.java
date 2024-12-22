@@ -18,16 +18,23 @@ public class Lowongan {
     private String kualifikasi; // Kualifikasi pelamar yang dibutuhkan
     private String status; // Status lowongan (contoh: "Dibuka", "Ditutup")
     private ArrayList<Lamaran> daftarLamaran = new ArrayList<>();
+    private AdminPerusahaan adminPerusahaan;
+    private Pelamar pelamar;
+
+    
 
     // Konstruktor
-    public Lowongan(int idLowongan, String namaPerusahaan, String posisi, String deskripsiPekerjaan, String kualifikasi, String status) {
+    public Lowongan(int idLowongan, String namaPerusahaan, String posisi, String deskripsiPekerjaan, String kualifikasi, String status, AdminPerusahaan adminPerusahaan,Pelamar pelamar) {
         this.idLowongan = idLowongan;
         this.namaPerusahaan = namaPerusahaan;
         this.posisi = posisi;
         this.deskripsiPekerjaan = deskripsiPekerjaan;
         this.kualifikasi = kualifikasi;
         this.status = status;
+        this.adminPerusahaan = adminPerusahaan; // Simpan referensi admin
+        this.pelamar = pelamar;
     }
+    
 
     // Getter dan Setter
     public int getIdLowongan() {
@@ -87,15 +94,20 @@ public class Lowongan {
     public void addLamaran(Lamaran lamaran) {
         daftarLamaran.add(lamaran);
     }
+    public AdminPerusahaan getAdminPerusahaan() {
+        return adminPerusahaan;
+    }
+    
 
     // Method untuk menampilkan semua lamaran
     public void tampilkanLamaran() {
         if (daftarLamaran.isEmpty()) {
-            System.out.println("Belum ada lamaran untuk lowongan ini.");
+            System.out.println("Belum ada lamaran yang masuk.");
         } else {
             for (Lamaran lamaran : daftarLamaran) {
-                lamaran.tampilkanLamaran();
-                System.out.println("-------------------");
+                System.out.println("ID Lamaran: " + lamaran.getIdLamaran() +
+                                   ", ID Pelamar: " + lamaran.getIdPelamar() +
+                                   ", Status: " + lamaran.getStatusLamaran());
             }
         }
     }

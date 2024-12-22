@@ -12,14 +12,17 @@ import java.util.ArrayList;
 import java.util.Scanner;
 public class Pelamar extends Pengguna {
     private ArrayList<Resume> resumes;
+    private ArrayList<Pengguna> users;
     Scanner scanner=new Scanner(System.in);
+    private ArrayList<Notifikasi> daftarNotifikasi = new ArrayList<>();
     private ArrayList<Lamaran> daftarLamaran = new ArrayList<>();
     private int idLamaranCounter = 1;
     
     
-    public Pelamar(int idPengguna,String username,String password){
-        super(idPengguna,username,password,"Pelamar");
+    public Pelamar(int idPengguna,String username,String password, String role, String email){
+        super(idPengguna,username,password,"Pelamar", email);
         this.resumes = new ArrayList<>();
+        this.users = new ArrayList<>();
     }
     
     public ArrayList<Resume> getResumes() {
@@ -281,10 +284,18 @@ public class Pelamar extends Pengguna {
         }
 
         // Buat lamaran baru
-        String tanggalLamaran = "2024-12-19"; // Contoh tanggal
+        System.out.println("Masukkan tanggal hari ini: ");
+        String tanggalLamaran = scanner.nextLine(); // Contoh tanggal
         Lamaran lamaranBaru = new Lamaran(idLamaranCounter++, idLowongan, this.getIdPengguna(), idResume, tanggalLamaran, "Dalam Proses");
         daftarLamaran.add(lamaranBaru);
         targetLowongan.addLamaran(lamaranBaru);
+         // Kirim notifikasi ke admin
+        AdminPerusahaan admin = targetLowongan.getAdminPerusahaan(); // Pastikan ada getter di Lowongan
+        if (admin != null) {
+            String pesanNotifikasi = "Pelamar ID " + this.getIdPengguna() + " telah melamar untuk posisi " + targetLowongan.getPosisi() + " E-mail: "+ this.getEmail();
+            Notifikasi notifikasi = new Notifikasi(admin.getIdPengguna(), pesanNotifikasi, tanggalLamaran);
+            admin.tambahNotifikasi(notifikasi);
+        }
 
 
         System.out.println("Lamaran berhasil diajukan dengan ID: " + lamaranBaru.getIdLamaran());
@@ -304,12 +315,28 @@ public class Pelamar extends Pengguna {
     @Override
     public void showInfoPengguna(){
         System.out.println("======Informasi Pelamar======");
+        System.out.println("ID pelamar\t:" + getIdPengguna());
         System.out.println("Username\t:" + getUsername());
-        System.out.println("\t:" + getUsername());
+        System.out.println("Role\t:" + getRole());
+        System.out.println("Email\t:" +getEmail());
     }
      
+    public void tambahNotifikasi(Notifikasi notifikasi) {
+        daftarNotifikasi.add(notifikasi);
+    }
+    @Override
     public void showNotification(){
-        
+        if (daftarNotifikasi.isEmpty()) {
+            System.out.println("Tidak ada notifikasi untuk Anda.");
+        } else {
+            System.out.println("\n=== Notifikasi Anda ===");
+            for (Notifikasi notifikasi : daftarNotifikasi) {
+                System.out.println("ID Notifikasi: " + notifikasi.getIdNotifikasi());
+                System.out.println("Pesan: " + notifikasi.getPesan());
+                System.out.println("Waktu Pengiriman: " + notifikasi.getWaktuPengiriman());
+                System.out.println("-------------------");
+            }
+        }
     }
     public void showRecommendation(){
         

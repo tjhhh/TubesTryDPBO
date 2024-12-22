@@ -32,9 +32,9 @@ public class IMenu implements Menu{
     }
     
     public IMenu(){
-       users.add(new AdminPerusahaan(idPengguna++,"admin","admin123"));
-       users.add(new AdminPerusahaan(idPengguna++,"admin2","admin123"));
-       users.add(new Pelamar(idPengguna++,"pelamar","pelamar123"));
+       users.add(new AdminPerusahaan(idPengguna++,"admin","admin123", "Admin", "admin1234@gmail.com"));
+       users.add(new AdminPerusahaan(idPengguna++,"admin2","admin123", "Admin", "admin2@gmail.com"));
+       users.add(new Pelamar(idPengguna++,"pelamar","pelamar123", "Pelamar", "pelamar@gmail.com"));
     }
 
     @Override
@@ -97,6 +97,7 @@ public class IMenu implements Menu{
             System.out.println("2. Lihat Lamaran");
             System.out.println("3. Buat Event");
             System.out.println("4. Notifikasi");
+            System.out.println("5. Proses Lamaran");
             System.out.println("9. Keluar");
             System.out.print("Masukkan pilihan: ");
             int pilihan = scanner.nextInt();
@@ -113,6 +114,9 @@ public class IMenu implements Menu{
                     admin.addEvent();
                 case 4:
                     admin.showNotification();
+                    break;
+                case 5:
+                    admin.processApply();
                     break;
                 case 9:
                     return;
@@ -169,12 +173,14 @@ public class IMenu implements Menu{
         String password = scanner.nextLine();
         System.out.print("Pilih Role (Pelamar/Admin): ");
         String role = scanner.nextLine();
+        System.out.print("Masukkan Email: ");
+        String email = scanner.nextLine();
 
         if (role.equalsIgnoreCase("Pelamar")) {
-            users.add(new Pelamar(idPengguna++,username, password));
+            users.add(new Pelamar(idPengguna++,username, password, role, email));
             System.out.println("Akun Pelamar berhasil didaftarkan!");
         } else if (role.equalsIgnoreCase("Admin")) {
-            users.add(new AdminPerusahaan(idPengguna++,username, password));
+            users.add(new AdminPerusahaan(idPengguna++,username, password, role, email));
             System.out.println("Akun Admin berhasil didaftarkan!");
         } else {
             System.out.println("Role tidak valid!");

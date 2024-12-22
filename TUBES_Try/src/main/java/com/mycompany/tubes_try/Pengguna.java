@@ -64,7 +64,7 @@ public abstract class Pengguna {
     }
     
     public abstract void showInfoPengguna();
-    
+    public abstract void showNotification();
     
     
 }
