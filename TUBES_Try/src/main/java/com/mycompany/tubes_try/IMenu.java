@@ -67,7 +67,7 @@ public class IMenu implements Menu{
                     pelamar.showAllApply();
                     break;
                 case 2:
-                    pelamar.showRecommendation();
+                    System.out.println("Coming Soon...");
                     break;
                 case 3:
                     pelamar.showNotification();
@@ -111,7 +111,7 @@ public class IMenu implements Menu{
                     admin.showApply();
                     break;
                 case 3:
-                    admin.addEvent();
+                    System.out.println("Coming Soon...");
                 case 4:
                     admin.showNotification();
                     break;

@@ -135,9 +135,28 @@ public class Pelamar extends Pengguna {
     }
     
     public void resumeManagement(Scanner scanner,Pelamar pelamar){
-        System.out.print("Masukkan ID Dokumen: ");
-        int idDokumen = scanner.nextInt();
-        scanner.nextLine();
+        int idDokumen = 0;
+        boolean validInput = false;
+
+        while (!validInput) {
+            try {
+                System.out.print("Masukkan ID Dokumen: ");
+                idDokumen = Integer.parseInt(scanner.nextLine()); // Menggunakan nextLine dan parseInt
+                validInput = true; // Berhenti jika input valid
+            } catch (NumberFormatException e) {
+                System.out.println("Input tidak valid. Harap masukkan angka yang valid.\n");
+            }
+        }
+
+        while (isIdDokumenExist(idDokumen)) {
+            try {
+                System.out.println("\nID sudah ada, Masukkan ID baru");
+                System.out.print("Masukkan ID Dokumen: ");
+                idDokumen = Integer.parseInt(scanner.nextLine()); // Menggunakan nextLine dan parseInt
+            } catch (NumberFormatException e) {
+                System.out.println("Input tidak valid. Harap masukkan angka yang valid.\n");
+       }
+    }
         System.out.println("Masukkan Nama anda ");
         String name = scanner.nextLine();
         System.out.println("Masukkan Umur anda: ");

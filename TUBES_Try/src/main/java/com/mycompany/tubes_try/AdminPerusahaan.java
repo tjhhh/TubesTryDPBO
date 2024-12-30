@@ -62,9 +62,7 @@ public class AdminPerusahaan extends Pengguna {
         }
         System.out.println("Lowongan dengan ID " + idLowongan + " tidak ditemukan.");
     }
-    public void addEvent(){
-        
-    }
+    
 
     
 
