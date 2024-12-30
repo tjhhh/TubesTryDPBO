@@ -33,7 +33,7 @@ public class Pelamar extends Pengguna {
         while(true){
             Menu menu = new IMenu();
             menu.menuResume();
-            System.out.println("Masukkan pilihan: ");
+            System.out.print("Masukkan pilihan: ");
             int pilihanResume = scanner.nextInt();
             scanner.nextLine(); // Konsumsi newline
                 switch (pilihanResume) {
@@ -59,6 +59,7 @@ public class Pelamar extends Pengguna {
                                 System.out.println("1. Skill");
                                 System.out.println("2. Pendidikan");
                                 System.out.println("3. Pengalaman");
+                                System.out.println("9. kembali");
                                 System.out.print("Pilih opsi: ");
                                 int opsiEdit = scanner.nextInt();
                                 scanner.nextLine(); // Konsumsi newline
@@ -107,6 +108,9 @@ public class Pelamar extends Pengguna {
                                                 String newDesc = scanner.nextLine();
                                                 r.setExperienced(new Experienced(newPosition, newCompany, newStartExp, newEndExp, newDesc));
                                                 System.out.println("Pengalaman berhasil diubah!");
+                                                break;
+
+                                            case 9:
                                                 break;
                                             default:
                                                 System.out.println("Pilihan tidak valid.");
